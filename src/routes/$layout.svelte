@@ -1,5 +1,5 @@
 <script context="module">
-	export async function load({ page, context, session }) {
+	export async function load({ page, context }) {
         console.log("Load function called in $layout with page", page);
         return { context: { info: "Info from layout load() function" } };
 	}
