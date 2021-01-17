@@ -1,43 +1,15 @@
 # Bug reproduction
 
-A reproduction of a bug with load() and onMount().
+A reproduction of a bug with `load()` and its `context` and `session` parameters.
 
-## Original README
+## Repro steps
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Svelte apps are built with _adapters_, which optimise your project for deployment to different environments, like [Begin](https://begin.com), [Netlify](https://www.netlify.com), [Vercel](https://vercel.com) and so on. (You can also create your own adapter — instructions TODO.)
-
-By default, `npm run build` will generate a Node app that you can run with `node build`. To use a different adapter, install it and update your `svelte.config.js` accordingly. The following official adapters are available:
-
-- [@sveltejs/adapter-node](https://github.com/sveltejs/kit/tree/master/packages/adapter-node)
-- [@sveltejs/adapter-static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static)
-- [@sveltejs/adapter-netlify](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify)
-- ...more soon
+1. Run `yarn`
+1. Run `yarn dev`
+1. Point your browser at http://localhost:3000/
+1. Notice the page contains "Info received from top-level layout: undefined"
+1. Edit `src/routes/$layout.svelte`
+1. Change the `load()` parameters from `load({ page, context })` to `load({ page, context, session })`
+1. Save the file and look at the browser
+1. Notice the page contains "Info received from top-level layout: Info from layout load() function"
+1. Wonder why adding a `session` parameter caused the *context* to be successfully passed down
