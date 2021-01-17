@@ -1,4 +1,8 @@
-# create-svelte
+# Bug reproduction
+
+A reproduction of a bug with load() and onMount().
+
+## Original README
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
 
