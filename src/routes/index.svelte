@@ -1,9 +1,24 @@
+<script context="module">
+	export async function load({ page, context, session }) {
+		console.log("Load function called with page", page);
+		console.log("Received context",context,"from layout component")
+		return { props: { context }}
+	}
+</script>
+
 <script>
+	import { onMount } from 'svelte';
+	import { session } from '$app/stores';
+	onMount(() => { console.log('onMount() called'); $session = {}; });
 	import Counter from '$components/Counter.svelte';
+
+	export let context;
 </script>
 
 <main>
 	<h1>Hello world!</h1>
+
+	<p>Info received from top-level layout: {context.info}</p>
 
 	<Counter/>
 	<p>Visit the <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps.</p>
